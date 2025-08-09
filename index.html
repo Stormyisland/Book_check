@@ -33,7 +33,29 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
 
-
+         .chat-bubble {
+            border-radius: 20px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .chat-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent;
+        }
+        
+        .kid-bubble {
+            background: white;
+        }
+        
+        .bot-bubble {
+            background: #FFE66D;
+        }
 
 
 
