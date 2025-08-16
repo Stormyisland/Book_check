@@ -278,3 +278,27 @@
                     sendButton.click();
                 }
             });
+                  // Add click handlers to quick action buttons
+            document.querySelectorAll('footer button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const text = this.textContent;
+                    addMessage(text, true);
+                    
+                    setTimeout(() => {
+                        // Different responses for different buttons
+                        let response;
+                        if (text.includes("bedtime")) {
+                            response = "For bedtime, I recommend <strong>Goodnight Moon</strong> or <strong>The Going-To-Bed Book</strong>! 🌙";
+                        } else if (text.includes("animals")) {
+                            response = "Animal books are my favorite! Try <strong>Brown Bear, Brown Bear</strong> or <strong>Giraffes Can't Dance</strong>! 🦒";
+                        } else {
+                            response = "Let me suggest <strong>Where the Wild Things Are</strong> or <strong>The Day the Crayons Quit</strong> - both are super fun!";
+                        }
+                        addMessage(response, false);
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
