@@ -233,3 +233,48 @@
             <p class="text-sm">© 2023 Story Spark - Making reading magical for kids!</p>
         </div>
     </footer>
+   <script>
+        // Simple chat functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.querySelector('input[type="text"]');
+            const sendButton = document.querySelector('.fa-paper-plane').parentElement;
+            const chatMessages = document.getElementById('chat-messages');
+            
+            function addMessage(text, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `flex ${isUser ? 'justify-end' : ''}`;
+                
+                const bubble = document.createElement('div');
+                bubble.className = `chat-bubble ${isUser ? 'kid-bubble' : 'bot-bubble'} px-4 py-3 max-w-xs md:max-w-md shadow-md`;
+                bubble.innerHTML = `<p>${text}</p>`;
+                
+                messageDiv.appendChild(bubble);
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            sendButton.addEventListener('click', function() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    
+                    // Simulate bot response
+                    setTimeout(() => {
+                        const responses = [
+                            "That's a great question! Let me find a book about that...",
+                            "I know just the story for you!",
+                            "Hmm, let me think... oh! How about this one?",
+                            "I love that topic! Here's a fun book:"
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse, false);
+                    }, 1000);
+                }
+            });
+            
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendButton.click();
+                }
+            });
